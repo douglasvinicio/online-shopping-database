@@ -24,24 +24,28 @@ DROP TABLE IF EXISTS shipping_addresses;
 CREATE TABLE shipping_addresses
 (
 	shipping_address_id INT NOT NULL,
+    customer_id INT NOT NULL,
     country varchar(60),
 	street_name varchar(60),
     city_name varchar(60),
     state_name varchar(60),
     zip_code varchar(10),
-PRIMARY KEY (shipping_address_id)
+PRIMARY KEY (shipping_address_id),
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
 DROP TABLE IF EXISTS billing_addresses;
 CREATE TABLE billing_addresses
 (
 	billing_address_id INT NOT NULL,
+	customer_id INT NOT NULL,
     country varchar(60),
 	street_name varchar(60),
     city_name varchar(60),
     state_name varchar(60),
     zip_code varchar(10),
-PRIMARY KEY (billing_address_id)
+PRIMARY KEY (billing_address_id),
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
 # Alter customer table to include both shipping and billing addresses
@@ -60,10 +64,8 @@ CREATE TABLE products
     category varchar(60),
     brand varchar(60),
     model varchar(60),
-    mfg_date DATE, -- no need for time here
     unit_price DECIMAL(10,2),
-    units_stock INT,
-    units_order INT,
+    units_in_stock INT,
 PRIMARY KEY (product_id)
 );
 
@@ -75,6 +77,7 @@ CREATE TABLE orders
 	order_id INT NOT NULL UNIQUE AUTO_INCREMENT,
     customer_id INT NOT NULL,
     product_id INT NOT NULL,
+    warranty INT DEFAULT 90, -- warranty length (in months)
     quantity_ordered INT NOT NULL,
     order_date DATETIME, -- specify both date and time
     order_price DECIMAL(10,2),
@@ -94,4 +97,15 @@ CREATE TABLE shipments
 PRIMARY KEY (product_id, order_id),
 FOREIGN KEY (product_id) REFERENCES orders(product_id),
 FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+DROP TABLE IF EXISTS reviews;
+CREATE TABLE reviews
+(
+	customer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    customer_review varchar(255),
+PRIMARY KEY (customer_id, product_id),
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
