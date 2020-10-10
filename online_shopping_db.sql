@@ -10,9 +10,9 @@ DROP TABLE IF EXISTS customers;
 CREATE TABLE customers
 (
 	customer_id INT NOT NULL UNIQUE AUTO_INCREMENT,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    email_address VARCHAR(255) UNIQUE,
+    first_name VARCHAR(60),
+    last_name VARCHAR(60),
+    email_address VARCHAR(60) UNIQUE,
     send_email BOOLEAN,
     phone_number VARCHAR(20),
 PRIMARY KEY (customer_id)
@@ -24,12 +24,11 @@ DROP TABLE IF EXISTS shipping_addresses;
 CREATE TABLE shipping_addresses
 (
 	shipping_address_id INT NOT NULL,
-	street_name varchar(255),
-    city_name varchar(255),
-    state_name varchar(255),
+    country varchar(60),
+	street_name varchar(60),
+    city_name varchar(60),
+    state_name varchar(60),
     zip_code varchar(10),
-    province_name varchar(255),
-    postal_code varchar(10),
 PRIMARY KEY (shipping_address_id)
 );
 
@@ -37,12 +36,11 @@ DROP TABLE IF EXISTS billing_addresses;
 CREATE TABLE billing_addresses
 (
 	billing_address_id INT NOT NULL,
-	street_name varchar(255),
-    city_name varchar(255),
-    state_name varchar(255),
+    country varchar(60),
+	street_name varchar(60),
+    city_name varchar(60),
+    state_name varchar(60),
     zip_code varchar(10),
-    province_name varchar(255),
-    postal_code varchar(10),
 PRIMARY KEY (billing_address_id)
 );
 
@@ -59,11 +57,11 @@ DROP TABLE IF EXISTS products;
 CREATE TABLE products
 (
 	product_id INT NOT NULL UNIQUE AUTO_INCREMENT,
-    category varchar(255),
-    brand varchar(255),
-    model varchar(255),
+    category varchar(60),
+    brand varchar(60),
+    model varchar(60),
     mfg_date DATE, -- no need for time here
-    unit_price DECIMAL(8,2),
+    unit_price DECIMAL(10,2),
     units_stock INT,
     units_order INT,
 PRIMARY KEY (product_id)
@@ -85,7 +83,15 @@ PRIMARY KEY (order_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
 	# Customer on cascade delete because if we delete 
     # the customer ID, the order should also be deleted.
-FOREIGN KEY (product_id) REFERENCES products(product_id) -- comment
+FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-DESCRIBE customers;
+DROP TABLE IF EXISTS shipments;
+CREATE TABLE shipments
+(
+	product_id INT NOT NULL,
+    order_id INT NOT NULL,
+PRIMARY KEY (product_id, order_id),
+FOREIGN KEY (product_id) REFERENCES orders(product_id),
+FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
