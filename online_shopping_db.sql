@@ -85,7 +85,7 @@ PRIMARY KEY (order_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
 	# Customer on cascade delete because if we delete 
     # the customer ID, the order should also be deleted.
-FOREIGN KEY (product_id) REFERENCES products(product_id)
+FOREIGN KEY (product_id) REFERENCES products(product_id) -- comment
 );
 
 DESCRIBE customers;
