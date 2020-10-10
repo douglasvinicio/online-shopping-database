@@ -11,7 +11,6 @@ INSERT INTO customers
 ) VALUES
 (
 "001",
-"001",
 'John',
 'Doe',
 'john-doe@gmail.com',
@@ -52,7 +51,6 @@ INSERT INTO billing_addresses
     zip_code
 ) VALUES 
 (
-
 	"001",
 	"001",
     "Canada",
@@ -61,7 +59,6 @@ INSERT INTO billing_addresses
     "Ontario",
     "HHH-123"
 );
-
 
 INSERT INTO products
 (
@@ -81,7 +78,33 @@ INSERT INTO products
     3
     );
     
+UPDATE customers SET 
+	billing_address_id = "001",
+    shipping_address_id = "001"
+WHERE customer_id = 001;
+    
     
     SELECT * FROM billing_addresses;
     SELECT * FROM shipping_addresses;
     SELECT * FROM customers;
+    
+SELECT 
+c.customer_id,
+c.first_name,
+a.country,
+a.city_name,
+a.street_name
+FROM customers c
+JOIN
+billing_addresses a On c.customer_id = a.customer_id;
+
+
+SELECT 
+c.customer_id,
+c.first_name,
+a.country,
+a.city_name,
+a.street_name
+FROM customers c
+JOIN
+shipping_addresses a On c.customer_id = a.customer_id;

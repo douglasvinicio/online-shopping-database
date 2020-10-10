@@ -30,8 +30,8 @@ CREATE TABLE shipping_addresses
     city_name varchar(60),
     state_name varchar(60),
     zip_code varchar(10),
-PRIMARY KEY (shipping_address_id),
-FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+	PRIMARY KEY (shipping_address_id),
+	FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
 DROP TABLE IF EXISTS billing_addresses;
