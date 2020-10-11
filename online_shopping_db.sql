@@ -29,7 +29,7 @@ CREATE TABLE shipping_address
 	street_name varchar(60),
     city_name varchar(60),
     state_name varchar(60),
-    zip_code varchar(10),
+    zip_code varchar(20),
 	PRIMARY KEY (shipping_address_id),
 	FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
@@ -43,18 +43,10 @@ CREATE TABLE billing_address
 	street_name varchar(60),
     city_name varchar(60),
     state_name varchar(60),
-    zip_code varchar(10),
+    zip_code varchar(20),
 PRIMARY KEY (billing_address_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
-
-# Alter customer table to include both shipping and billing addresses
-# Using foreign keys from the pre-existing tables
-ALTER TABLE customers
-ADD shipping_address_id INT,
-ADD FOREIGN KEY (shipping_address_id) REFERENCES shipping_address(shipping_address_id),
-ADD billing_address_id INT,
-ADD FOREIGN KEY (billing_address_id) REFERENCES billing_address(billing_address_id);
 
 # Creating the products table to store product information
 DROP TABLE IF EXISTS products;
