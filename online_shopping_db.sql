@@ -20,8 +20,8 @@ PRIMARY KEY (customer_id)
 
 # Create table for customer shipping addresses
 # There will be an identical table for billing addresses below
-DROP TABLE IF EXISTS shipping_addresses;
-CREATE TABLE shipping_addresses
+DROP TABLE IF EXISTS shipping_address;
+CREATE TABLE shipping_address
 (
 	shipping_address_id INT NOT NULL,
     customer_id INT NOT NULL,
@@ -34,8 +34,8 @@ CREATE TABLE shipping_addresses
 	FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
-DROP TABLE IF EXISTS billing_addresses;
-CREATE TABLE billing_addresses
+DROP TABLE IF EXISTS billing_address;
+CREATE TABLE billing_address
 (
 	billing_address_id INT NOT NULL,
 	customer_id INT NOT NULL,
@@ -52,9 +52,9 @@ FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 # Using foreign keys from the pre-existing tables
 ALTER TABLE customers
 ADD shipping_address_id INT,
-ADD FOREIGN KEY (shipping_address_id) REFERENCES shipping_addresses(shipping_address_id),
+ADD FOREIGN KEY (shipping_address_id) REFERENCES shipping_address(shipping_address_id),
 ADD billing_address_id INT,
-ADD FOREIGN KEY (billing_address_id) REFERENCES billing_addresses(billing_address_id);
+ADD FOREIGN KEY (billing_address_id) REFERENCES billing_address(billing_address_id);
 
 # Creating the products table to store product information
 DROP TABLE IF EXISTS products;
