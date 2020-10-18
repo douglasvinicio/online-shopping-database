@@ -3,29 +3,7 @@ USE online_shopping;
 # ----------------------------------------------------------
 -- Customers
 # ----------------------------------------------------------
-INSERT INTO customers
-(
-    first_name,
-    last_name ,
-    email_address ,
-    send_email ,
-    phone_number
-) VALUES
-(
-'John',
-'Doe',
-'john-doe@gmail.com',
-true,
-"112-333-1656"
-),
-(
-'Jane',
-'Doe',
-'jane-doe@gmail.com',
-true,
-"112-333-1656"
-);
-
+INSERT INTO customers(first_name,last_name,email_address,send_email,phone_number) VALUES('John','Doe','john-doe@gmail.com',true,"112-333-1656"),('Jane','Doe','jane-doe@gmail.com',true,"112-333-1656");
 INSERT INTO customers (first_name,last_name,email_address,send_email,phone_number) VALUES ("Francesca","Dieter","tincidunt.orci.quis@nonummyipsumnon.edu","0","1-261-403-9271"),("Vaughan","Caldwell","consequat.lectus.sit@scelerisque.org","0","1-859-724-9965"),("Thor","Imelda","sociis.natoque@euismodest.edu","1","1-792-945-2956"),("Asher","Lana","est.vitae.sodales@dui.org","0","1-715-645-2566"),("Leila","Paul","porttitor.interdum@nonsapien.co.uk","0","1-856-768-5399"),("Kareem","Ebony","amet.luctus@elitCurabitursed.edu","0","1-822-493-4639"),("Fleur","Cadman","eget.dictum.placerat@elitpretium.edu","0","1-590-471-5217"),("Vance","Wang","risus.varius.orci@Donecluctusaliquet.edu","0","1-473-874-4611"),("Cullen","Melinda","gravida.sit@urna.org","1","1-268-421-6119"),("Quinlan","Kitra","eget@metusVivamuseuismod.net","1","1-117-119-8895");
 INSERT INTO customers (first_name,last_name,email_address,send_email,phone_number) VALUES ("Gil","Ralph","vitae.erat@elit.ca","1","1-108-777-2518"),("Allistair","Cheryl","a.dui.Cras@nisi.ca","1","1-400-368-9867"),("Melyssa","Lenore","a.purus.Duis@tristiqueneque.co.uk","1","1-882-615-7828"),("Allistair","Bruce","nec@nunc.edu","0","1-808-953-8707"),("Ciaran","Kibo","Sed@Phaselluselit.co.uk","1","1-119-845-3274"),("Colorado","Jamal","iaculis@ipsumleoelementum.org","0","1-263-372-1535"),("Keane","Nina","tortor.Nunc.commodo@ipsum.net","1","1-295-554-2083"),("Xavier","Grace","egestas.Aliquam.fringilla@vitae.com","0","1-502-861-7455"),("Warren","Keelie","semper@lobortisnisinibh.edu","0","1-277-957-6464"),("Rylee","Jane","ligula@Vestibulum.net","1","1-621-431-5481");
 INSERT INTO customers (first_name,last_name,email_address,send_email,phone_number) VALUES ("Carson","Cameran","dis.parturient.montes@laoreetposuereenim.edu","1","1-825-512-1231"),("Raya","Charlotte","justo.Proin.non@ullamcorpervelit.com","0","1-166-982-0977"),("Hanna","Candace","et@diam.com","0","1-978-443-2211"),("Laura","Odette","nonummy@dapibusid.com","1","1-806-450-7727"),("Jin","Aristotle","condimentum.eget.volutpat@accumsansed.ca","1","1-743-276-6999"),("Micah","Andrew","in@parturient.com","1","1-679-378-6206"),("Amery","Cruz","diam@molestietellusAenean.ca","0","1-602-656-0855"),("Stewart","Gannon","lobortis.mauris@Namporttitor.co.uk","0","1-857-211-8127"),("Whoopi","Karly","venenatis.lacus.Etiam@congueaaliquet.org","1","1-336-315-3032"),("Leah","Hoyt","lobortis@leoVivamus.org","0","1-380-838-1551");

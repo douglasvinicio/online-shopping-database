@@ -1,13 +1,27 @@
+
+INSERT INTO product_category
+(
+    category_id,
+	category ,
+	category_description
+) VALUES 
+(
+    "Apple",
+    "iPhone 8",
+    329.99,
+    3
+);
+
+
+
 INSERT INTO products
 (
-    category,
     brand,
     model,
     unit_price,
     units_in_stock
 ) VALUES 
 (
-    "Phone",
     "Apple",
     "iPhone 8",
     329.99,
@@ -97,7 +111,6 @@ INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("S
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone iPhone 11 PRO",169,5);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone X",579,12);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple"," iPhone SE 2",581,8);
-INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple"," iPhone SE",889,89);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple"," iPhone SE",280,93);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone 7",528,47);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone 7",606,63);
@@ -106,9 +119,7 @@ INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("S
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple"," iPhone SE",279,38);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone 4",268,198);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone X",600,121);
-INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone 6",631,200);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone iPhone 11 PRO",308,25);
-INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","",100,101);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone 12 PRO",448,43);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple"," iPhone SE 2",950,72);
 INSERT INTO products (category,brand,Model,unit_price,units_in_stock) VALUES ("Smartphone","Apple","iPhone 5",247,28);

@@ -3,6 +3,9 @@ DROP DATABASE IF EXISTS online_shopping;
 CREATE DATABASE IF NOT EXISTS online_shopping; 
 USE online_shopping;
 
+# ----------------------------------------------------------
+-- Customers 
+# ----------------------------------------------------------
 # Create a first table (customers) and include the fields:
 # customer_id, first_name, last_name, address_id (both), email, 
 # send_email and phone_number
@@ -47,13 +50,14 @@ CREATE TABLE billing_address
 PRIMARY KEY (billing_address_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
-
+# ----------------------------------------------------------
+-- Products 
+# ----------------------------------------------------------
 # Creating the products table to store product information
 DROP TABLE IF EXISTS products;
 CREATE TABLE products
 (
 	product_id INT NOT NULL UNIQUE AUTO_INCREMENT,
-    category varchar(60),
     brand varchar(60),
     model varchar(60),
     unit_price DECIMAL(10,2),
@@ -61,6 +65,20 @@ CREATE TABLE products
 PRIMARY KEY (product_id)
 );
 
+
+DROP TABLE IF EXISTS products_category;
+CREATE TABLE products_category
+(
+product_id INT NOT NULL,
+category VARCHAR(40),
+category_description VARCHAR(255),
+PRIMARY KEY (product_id),
+FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+# ----------------------------------------------------------
+-- Orders
+# ----------------------------------------------------------
 # Creating an order table to relate customers to the products they purchase
 # Includes customer_id and product_id Foreign Keys
 DROP TABLE IF EXISTS orders;
@@ -81,16 +99,9 @@ FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
 FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-DROP TABLE IF EXISTS shipments;
-CREATE TABLE shipments
-(
-	product_id INT NOT NULL,
-    order_id INT NOT NULL,
-PRIMARY KEY (product_id, order_id),
-FOREIGN KEY (product_id) REFERENCES orders(product_id),
-FOREIGN KEY (order_id) REFERENCES orders(order_id)
-);
-
+# ----------------------------------------------------------
+-- Reviews 
+# ----------------------------------------------------------
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews
 (
@@ -100,4 +111,17 @@ CREATE TABLE reviews
 PRIMARY KEY (customer_id, product_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
 FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+# ----------------------------------------------------------
+-- Shipments 
+# ----------------------------------------------------------
+DROP TABLE IF EXISTS shipments;
+CREATE TABLE shipments
+(
+	product_id INT NOT NULL,
+    order_id INT NOT NULL,
+PRIMARY KEY (product_id, order_id),
+FOREIGN KEY (product_id) REFERENCES orders(product_id),
+FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );

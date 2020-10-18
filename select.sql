@@ -1,9 +1,8 @@
-    SELECT * FROM customers;
+    
 SELECT * FROM billing_address;
-SELECT * FROM shipping_addresses;
-SELECT * FROM customers WHERE first_name="Orlando";
+SELECT * FROM shipping_address;
+SELECT * FROM customer_address;
 SELECT * FROM orders;
-SELECT * FROM products;
 
 SELECT 
 c.customer_id,
@@ -13,7 +12,7 @@ a.city_name,
 a.street_name
 FROM customers c
 JOIN
-billing_address a On c.customer_id = a.customer_id;
+billing_addresses a On c.customer_id = a.customer_id;
 
 
 SELECT 
@@ -24,4 +23,4 @@ a.city_name,
 a.street_name
 FROM customers c
 JOIN
-shipping_address a On c.customer_id = a.customer_id;
+shipping_addresses a On c.customer_id = a.customer_id;
