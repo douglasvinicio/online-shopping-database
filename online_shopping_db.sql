@@ -53,6 +53,16 @@ FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 # ----------------------------------------------------------
 -- Products 
 # ----------------------------------------------------------
+
+
+DROP TABLE IF EXISTS products_category;
+CREATE TABLE products_category
+(
+category_id INT NOT NULL,
+category_name VARCHAR(40),
+PRIMARY KEY (category_id)
+);
+
 # Creating the products table to store product information
 DROP TABLE IF EXISTS products;
 CREATE TABLE products
@@ -62,18 +72,9 @@ CREATE TABLE products
     model varchar(60),
     unit_price DECIMAL(10,2),
     units_in_stock INT,
-PRIMARY KEY (product_id)
-);
-
-
-DROP TABLE IF EXISTS products_category;
-CREATE TABLE products_category
-(
-product_id INT NOT NULL,
-category VARCHAR(40),
-category_description VARCHAR(255),
+    category_id INT,
 PRIMARY KEY (product_id),
-FOREIGN KEY (product_id) REFERENCES products(product_id)
+FOREIGN KEY (category_id) REFERENCES products_category(category_id)
 );
 
 # ----------------------------------------------------------
@@ -82,21 +83,30 @@ FOREIGN KEY (product_id) REFERENCES products(product_id)
 # Creating an order table to relate customers to the products they purchase
 # Includes customer_id and product_id Foreign Keys
 DROP TABLE IF EXISTS orders;
-CREATE TABLE orders
-(
-	order_id INT NOT NULL UNIQUE AUTO_INCREMENT,
-    customer_id INT NOT NULL,
-    product_id INT NOT NULL,
-    warranty INT DEFAULT 90, -- warranty length (in months)
-    quantity_ordered INT NOT NULL,
+
+CREATE TABLE orders (
+	order_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+	customer_id INT,
+	item_id INT,
     order_date DATETIME, -- specify both date and time
-    order_price DECIMAL(10,2),
-    order_completed BOOLEAN,
-PRIMARY KEY (order_id),
-FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
-	# Customer on cascade delete because if we delete 
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE ON UPDATE CASCADE
+    # Customer on cascade delete because if we delete 
     # the customer ID, the order should also be deleted.
-FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+CREATE TABLE order_items(
+	order_id INT,
+	item_id INT,
+	product_id INT NOT NULL,
+	quantity INT NOT NULL,
+	warranty INT DEFAULT 90, -- warranty length (in months)
+	PRIMARY KEY (order_id, item_id),
+	FOREIGN KEY (order_id) 
+        REFERENCES orders(order_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (product_id) 
+        REFERENCES products (product_id) 
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 # ----------------------------------------------------------
@@ -113,15 +123,4 @@ FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
 FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-# ----------------------------------------------------------
--- Shipments 
-# ----------------------------------------------------------
-DROP TABLE IF EXISTS shipments;
-CREATE TABLE shipments
-(
-	product_id INT NOT NULL,
-    order_id INT NOT NULL,
-PRIMARY KEY (product_id, order_id),
-FOREIGN KEY (product_id) REFERENCES orders(product_id),
-FOREIGN KEY (order_id) REFERENCES orders(order_id)
-);
+
