@@ -4,9 +4,9 @@
 INSERT INTO orders(customer_id,order_date) VALUES (1,"2020-02-02");
 
 -- Populating with sales - 3 sales to client 1 John Doe.
-INSERT INTO order_items(order_id,item_id,product_id,quantity) VALUES (1,1,1);
-INSERT INTO order_items(order_id,item_id,product_id,quantity) VALUES (1,3,1);
-INSERT INTO order_items(order_id,item_id,product_id,quantity) VALUES (1,4,1);
+INSERT INTO order_items(order_id,product_id,quantity) VALUES (1,1,1);
+INSERT INTO order_items(order_id,product_id,quantity) VALUES (1,3,1);
+INSERT INTO order_items(order_id,product_id,quantity) VALUES (1,4,1);
 
 
 -- Second Order - Client 184 

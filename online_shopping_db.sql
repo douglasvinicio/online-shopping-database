@@ -116,7 +116,7 @@ CREATE TABLE reviews
 (
 	customer_id INT NOT NULL,
     product_id INT NOT NULL,
-    customer_review varchar(255),
+    customer_review varchar(500),
 PRIMARY KEY (customer_id, product_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
 FOREIGN KEY (product_id) REFERENCES products(product_id)
