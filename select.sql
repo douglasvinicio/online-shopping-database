@@ -19,9 +19,10 @@ FROM customers c
 JOIN shipping_address a On c.customer_id = a.customer_id;
 
 -- SELECT name,city,order_id and product_id inside order_items
-SELECT  c.order_id AS _order, a.first_name,a.last_name, b.country,b.street_name, b.city_name, e.brand,e.model,e.unit_price
+SELECT  c.order_id AS _order, a.first_name,a.last_name,b.street_name, b.city_name, e.brand,e.model,e.unit_price,f.category_name
 FROM customers a
 JOIN shipping_address b ON a.customer_id = b.customer_id
 JOIN orders c ON c.customer_id = a.customer_id
 JOIN order_items d ON d.order_id = c.order_id
-JOIN products e ON e.product_id = d.product_id;
+JOIN products e ON e.product_id = d.product_id 
+JOIN products_category f ON f.category_id = e.category_id;
