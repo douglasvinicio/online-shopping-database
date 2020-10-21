@@ -407,5 +407,15 @@ INSERT INTO shipping_address (shipping_address_id,customer_id,country,street_nam
 INSERT INTO shipping_address (shipping_address_id,customer_id,country,street_name,city_name,state_name,zip_code) VALUES (300,300,"Japan","P.O. Box 306, 1410 Mattis. Rd.","Paradise","NL","59488");
 
 
+-- Show all billing addresses within customer id, first and last name
+SELECT c.customer_id,c.first_name,a.country,a.city_name,a.street_name
+FROM customers c
+JOIN billing_address a On c.customer_id = a.customer_id;
+
+-- SELECT all customers that has a shipping address attached to the primary key
+SELECT  c.customer_id,c.first_name,a.country,a.city_name,a.street_name
+FROM customers c
+JOIN shipping_address a On c.customer_id = a.customer_id;
+
 
 
