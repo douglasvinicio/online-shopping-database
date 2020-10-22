@@ -18,8 +18,8 @@ INSERT INTO reviews(customer_id,product_id,customer_review) VALUES (50,14,"I did
 SELECT * FROM reviews;
 
 -- Showing all products and reviews to that product
-SELECT p.brand, p.model,c.first_name, c.last_name,r.customer_review
+SELECT p.brand, p.model,c.first_name, c.last_name,r.customer_review, c.customer_id
 FROM reviews r
 JOIN products p ON p.product_id = r.product_id
 JOIN customers c ON c.customer_id = p.product_id
-ORDER BY p.product_id;
+ORDER BY c.customer_id;
