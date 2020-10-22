@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS online_shopping;
 USE online_shopping;
 
 # ----------------------------------------------------------
--- Customers 
+-- Customers
 # ----------------------------------------------------------
 # Create a first table (customers) and include the fields:
 # customer_id, first_name, last_name, address_id (both), email, 
@@ -12,12 +12,12 @@ USE online_shopping;
 DROP TABLE IF EXISTS customers;
 CREATE TABLE customers
 (
-	customer_id INT NOT NULL UNIQUE AUTO_INCREMENT,
+	customer_id INT NOT NULL UNIQUE AUTO_INCREMENT, -- No need to insert a customer ID, will automatically create an incrementing value
     first_name VARCHAR(60),
     last_name VARCHAR(60),
-    email_address VARCHAR(60) UNIQUE,
-    send_email BOOLEAN,
-    phone_number VARCHAR(20),
+    email_address VARCHAR(60) UNIQUE, -- Can't have 2 of the same email for different customers
+    send_email BOOLEAN, -- Mailing list yes/no
+    phone_number VARCHAR(20), -- Saved as VarChar because it shouldn't act like an INT
 PRIMARY KEY (customer_id)
 );
 
@@ -26,32 +26,34 @@ PRIMARY KEY (customer_id)
 DROP TABLE IF EXISTS shipping_address;
 CREATE TABLE shipping_address
 (
-	shipping_address_id INT NOT NULL,
-    customer_id INT NOT NULL,
+	shipping_address_id INT NOT NULL, -- Necessary Field
+    customer_id INT NOT NULL, -- Necessary Field
     country varchar(60),
 	street_name varchar(60),
     city_name varchar(60),
     state_name varchar(60),
     zip_code varchar(20),
 	PRIMARY KEY (shipping_address_id),
-	FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+	FOREIGN KEY (customer_id) REFERENCES customers(customer_id) -- Referencing the ID from the customer table to reduce redundancy
 );
 
 DROP TABLE IF EXISTS billing_address;
 CREATE TABLE billing_address
 (
-	billing_address_id INT NOT NULL,
-	customer_id INT NOT NULL,
+	billing_address_id INT NOT NULL, -- Necessary Field
+	customer_id INT NOT NULL, -- Necessary Field
     country varchar(60),
 	street_name varchar(60),
     city_name varchar(60),
     state_name varchar(60),
     zip_code varchar(20),
 PRIMARY KEY (billing_address_id),
-FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id) -- Referencing the ID from the customer table to reduce redundancy
 );
+
 # ----------------------------------------------------------
 -- Products 
+-- We will be seperating the products from their categories to comply with the 2NF.
 # ----------------------------------------------------------
 
 
@@ -74,7 +76,7 @@ CREATE TABLE products
     units_in_stock INT,
     category_id INT,
 PRIMARY KEY (product_id),
-FOREIGN KEY (category_id) REFERENCES products_category(category_id)
+FOREIGN KEY (category_id) REFERENCES products_category(category_id) -- Using the category ID instead of repeatingthe category name in the table.
 );
 
 # ----------------------------------------------------------
@@ -111,7 +113,9 @@ CREATE TABLE order_items(
 );
 
 # ----------------------------------------------------------
--- Reviews 
+-- Reviews
+-- We could optionally add another table for user_ratings in case they had another value dependant on them.
+-- In our case, there are no transitive dependancies therefore we don't need a seperate table for ratings.
 # ----------------------------------------------------------
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews
@@ -121,8 +125,8 @@ CREATE TABLE reviews
     customer_review varchar(255),
     user_rating INT NOT NULL,
 	CHECK (user_rating BETWEEN 0 AND 5), -- Constraint to accept only rating inputs from 1 to 5
-PRIMARY KEY (customer_id, product_id),
-FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+PRIMARY KEY (customer_id, product_id),-- Compound Primary Key since both are required to fetch proper review
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id), 
 FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
