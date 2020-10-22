@@ -117,9 +117,12 @@ CREATE TABLE reviews
 	customer_id INT NOT NULL,
     product_id INT NOT NULL,
     customer_review varchar(255),
+    user_rating INT NOT NULL,
+	CHECK (user_rating BETWEEN 0 AND 5), -- Constraint to accept only rating inputs from 1 to 5
 PRIMARY KEY (customer_id, product_id),
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
 FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
+
 
 
