@@ -20,12 +20,8 @@ CURDATE()-- Today's date
 # Show the order on screen that corresponds with our client variable
 SELECT * FROM orders WHERE customer_id = @s_client; -- NEXT, take the order_id and add it to the session variable below
 
-<<<<<<< HEAD
-set @s_order_id = 1; # HERE THE ORDER NUMBER
-=======
 -- Setting a variable for our order session/ID
-set @s_order_id = 20;
->>>>>>> 787311adacc625f24c087dfd1d303387a3eeb7e3
+set @s_order_id = 1;
 SELECT @s_order_id;
 
 -- Select a product to add to our customer's order by assigning the product ID to a new variable
