@@ -89,6 +89,7 @@ DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
 	order_id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
 	customer_id INT,
+    payment_method VARCHAR(20),
     order_date DATETIME, -- specify both date and time
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE ON UPDATE CASCADE
     # Customer on cascade delete because if we delete 
@@ -100,7 +101,8 @@ CREATE TABLE order_items(
 	item_id INT AUTO_INCREMENT NOT NULL UNIQUE,
 	product_id INT NOT NULL,
 	quantity INT NOT NULL,
-	warranty INT DEFAULT 90, -- warranty length (in months)
+	warranty INT DEFAULT 90,-- warranty length (in days)
+    order_date DATETIME,
 	PRIMARY KEY (order_id, item_id),
 	FOREIGN KEY (order_id) 
         REFERENCES orders(order_id) 

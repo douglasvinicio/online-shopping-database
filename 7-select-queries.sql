@@ -26,3 +26,19 @@ JOIN orders c ON c.customer_id = a.customer_id
 JOIN order_items d ON d.order_id = c.order_id
 JOIN products e ON e.product_id = d.product_id 
 JOIN products_category f ON f.category_id = e.category_id;
+
+
+-- Query for total number of sold item in past month ( october in this example)
+SELECT COUNT(quantity) AS total_items_sold FROM order_items 
+WHERE order_date 
+BETWEEN 
+"2020-10-01" AND "2020-10-31";
+
+-- Total income in CAD
+
+# What is the total amount of money spent on salaries for all contracts starting after the 1st of January 1997?
+SELECT SUM(p.unit_price)
+FROM
+    products p
+JOIN
+    order_items i ON i.product_id = p.product_id;
