@@ -52,7 +52,7 @@ BETWEEN
 "2020-10-01" AND "2020-10-31";
 
 -- Total income in CAD
-SELECT SUM(p.unit_price)
+SELECT SUM(p.unit_price) AS Total_Sales_$CAD
 FROM
     products p
 JOIN
