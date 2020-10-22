@@ -1,11 +1,17 @@
 use online_shopping;
+#Going through all the tables
 SELECT * FROM customers;
+
 SELECT * FROM billing_address;
+
 SELECT * FROM shipping_address;
-SELECT * FROM customer_address;
+
 SELECT * FROM orders;
+
 SELECT * FROM order_items;
+
 SELECT * FROM products;
+
 SELECT * FROM products_category;
 
 -- Show all billing addresses within customer id, first and last name
@@ -17,6 +23,17 @@ JOIN billing_address a On c.customer_id = a.customer_id;
 SELECT  c.customer_id,c.first_name,a.country,a.city_name,a.street_name
 FROM customers c
 JOIN shipping_address a On c.customer_id = a.customer_id;
+
+-- SELECT all customers both addresses 
+SELECT 
+c.customer_id AS _id,c.first_name, c.last_name, -- Customer Info
+a.country AS ship_coutnry,a.city_name AS ship_city,a.street_name AS shipping_street, -- Shipping Address Info
+b.country AS billing_country, b.city_name AS billing_city, b.street_name AS billing_street -- Billing Address Info
+FROM customers c
+JOIN shipping_address a On c.customer_id = a.customer_id
+JOIN billing_address b ON b.customer_id = a.customer_id;
+-- WHERE c.customer_id = 1;
+
 
 -- SELECT name,city,order_id and product_id inside order_items
 SELECT  c.order_id AS _order, a.first_name,a.last_name,b.street_name, b.city_name, e.brand,e.model,e.unit_price,f.category_name

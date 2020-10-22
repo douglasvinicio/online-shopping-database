@@ -15,7 +15,7 @@ CURDATE()-- Today's date
 # Check the client order_id that was created.
 SELECT * FROM orders WHERE customer_id = @s_client; -- NEXT, take the order_id and assing to the session variable below
 
-set @s_order_id = 20;
+set @s_order_id = 1; # HERE THE ORDER NUMBER
 SELECT @s_order_id;
 
 -- Browser for your item

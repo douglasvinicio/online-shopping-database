@@ -27,5 +27,7 @@ ORDER BY c.customer_id;
 
 -- It will fail - Presentation purposes only - Error 3819 Check Constraint is violated.
 INSERT INTO reviews(customer_id,product_id,customer_review,user_rating) VALUES (47,16,"It's a phone case, whatever",-1);
+
 INSERT INTO reviews(customer_id,product_id,customer_review,user_rating) VALUES (46,16,"It's a phone case, whatever",0);
+
 INSERT INTO reviews(customer_id,product_id,customer_review,user_rating) VALUES (46,16,"It's a phone case, whatever",6);

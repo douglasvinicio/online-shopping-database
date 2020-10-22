@@ -7,8 +7,8 @@ INSERT INTO products_category(category_id,category_name) VALUES (5,"Screen Prote
 
 
 # Smartphones
-INSERT INTO products(brand,model,unit_price,units_in_stock,category_id) VALUES ("Apple","iPhone 8",329.99,3,1);
-INSERT INTO products(brand,model,unit_price,units_in_stock,category_id) VALUES ("Samsung","Galaxy Fold",899.99,6,1);
+INSERT INTO products(brand,model,unit_price,units_in_stock,category_id) VALUES ("Apple","iPhone 8",329.99,10,1);
+INSERT INTO products(brand,model,unit_price,units_in_stock,category_id) VALUES ("Samsung","Galaxy Fold",899.99,13,1);
 INSERT INTO products(brand,model,unit_price,units_in_stock,category_id) VALUES ("Samsung","Galaxy S9",899.99,7,1);
 INSERT INTO products(brand,model,unit_price,units_in_stock,category_id) VALUES ("Apple","iPhone XR",599.99,11,1);
 
