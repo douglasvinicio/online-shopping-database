@@ -35,10 +35,11 @@ BETWEEN
 "2020-10-01" AND "2020-10-31";
 
 -- Total income in CAD
-
-# What is the total amount of money spent on salaries for all contracts starting after the 1st of January 1997?
 SELECT SUM(p.unit_price)
 FROM
     products p
 JOIN
     order_items i ON i.product_id = p.product_id;
+
+-- AVERAGE of Ratings 
+SELECT AVG(user_rating)FROM reviews;
